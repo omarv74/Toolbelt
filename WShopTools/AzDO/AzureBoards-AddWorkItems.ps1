@@ -1,24 +1,15 @@
-# $orgURL = 'https://dev.azure.com/WShop-iPay'
-# $projectName = 'WShop-iPay'
 
-$orgURL = 'https://dev.azure.com/DEMO-WA-LNI'
-$projectName = 'DemoScrum'
+# Azure DevOps CLI Reference: https://docs.microsoft.com/en-us/cli/azure/ext/azure-devops/?view=azure-cli-latest
 
-$dow = Get-Date -UFormat '%u' #Day of the Week
-$lastMonday=(Get-Date).AddDays(-$dow+1)
-$lastMonday
+$orgURL = 'https://dev.azure.com/DemoEcolab'
+$projectName = 'DemoWaterfall'
 
-$sprint1StartDate = $($lastMonday).AddDays(-7) # Get-Date $($lastMonday).AddDays(-7) -Format 'yyy-MM-dd'
-
-$rootAreaPath = "\$projectName\Area\TEST"
-$rootIterationPath = "\$projectName\Iteration\TEST"
+$rootAreaPath = "\$projectName\Area\Ecolab"
+$rootIterationPath = "\$projectName\Iteration\Ecolab"
 
 # az login
 
 az devops configure --defaults organization=$orgURL project=$projectName
-
-az boards area project create --name 'TEST'
-az boards iteration project create --name 'TEST'
 
 az boards area project create --name 'Legacy Portfolio' --path "$rootAreaPath"
 az boards area project create --name 'Modern Portfolio' --path "$rootAreaPath"
